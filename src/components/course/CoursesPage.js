@@ -1,5 +1,7 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React, {PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import * as courseActions from '../../actions/courseActions';
 
 class CoursesPage extends React.Component {
     constructor(props, context) {
@@ -18,7 +20,8 @@ class CoursesPage extends React.Component {
         this.setState({ course: course });
     }
     onClickSave() {
-        alert(`Saving ${this.state.course.title}`);
+        //alert(`Saving ${this.state.course.title}`);
+        this.props.dispatch(courseActions.createCourse(this.state.course));
     }
     render() {
         return (
@@ -39,4 +42,17 @@ class CoursesPage extends React.Component {
         );
     }
 }
-export default CoursesPage;
+//export default CoursesPage;
+function mapStateToProps( state, ownProps) {
+    return {
+        courses: state.courses
+    };
+}
+function mapDispatchToProps() {
+
+}
+export default connect(mapStateToProps)(CoursesPage);
+
+//above is short hand for:
+//const connectedStateAndProps = connect(mapStateToProps, mapDispatchToProps);
+//export default connectedStateAndProps(CoursesPage);
