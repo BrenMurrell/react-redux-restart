@@ -16,14 +16,11 @@ class ManageCoursePage extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Manage Course</h1>
-                <CourseForm 
-                    allAuthors={[]} //empty arry to start - get from API later
-                    course={this.state.course} 
-                    errors={this.state.errors}
-                />
-            </div>
+            <CourseForm 
+                allAuthors={[]} //empty arry to start - get from API later
+                course={this.state.course} 
+                errors={this.state.errors}
+            />
         );
     }
 }
