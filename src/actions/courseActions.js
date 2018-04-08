@@ -5,7 +5,7 @@ export function loadCoursesSuccess(courses) {
     return { type: types.LOAD_COURSES_SUCCESS, courses };
 }
 
-//export
+// can add loadCoursesFailure (using catch below instead for brevity)
 
 export function loadCourses() {
     //promise >> action
