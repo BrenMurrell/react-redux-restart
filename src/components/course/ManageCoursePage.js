@@ -33,14 +33,17 @@ class ManageCoursePage extends React.Component {
 
     saveCourse(event) {
         event.preventDefault();
-        this.props.actions.saveCourse(this.state.course);
+        this.props.actions.saveCourse(this.state.course)
+            .then(() => this.redirect());
+        
+    }
+    redirect() {
         this.context.router.push('/courses');
     }
-
     render() {
         return (
             <CourseForm 
-                allAuthors={this.props.authors} //empty arry to start - get from API later
+                allAuthors={this.props.authors} 
                 onChange={this.updateCourseState}
                 onSave={this.saveCourse}
                 course={this.state.course} 
