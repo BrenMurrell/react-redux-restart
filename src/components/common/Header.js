@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 import LoadingDots from './LoadingDots';
 
-const Header = () => {
+const Header = ({loading}) => {
     return (
         <nav>
             <IndexLink to="/" activeClassName="active">Home</IndexLink>
@@ -10,8 +10,9 @@ const Header = () => {
             <Link to="/about" activeClassName="active">About</Link>
             {" | "}
             <Link to="/courses" activeClassName="active">Courses</Link>            
-            <LoadingDots interval={300} dots={3} />
+            {loading && <LoadingDots interval={300} dots={3} />}
         </nav>
     );
 };
+
 export default Header;
