@@ -12,12 +12,22 @@ class ManageCoursePage extends React.Component {
             course: Object.assign({}, this.props.course),
             errors: {}
         };
+
+        this.updateCourseState = this.updateCourseState.bind(this);
+    }
+
+    updateCourseState(event) {
+        const field = event.target.name;
+        let course = Object.assign({}, this.state.course);
+        course[field] = event.target.value;
+        return this.setState({course: course});
     }
 
     render() {
         return (
             <CourseForm 
                 allAuthors={this.props.authors} //empty arry to start - get from API later
+                onChange={this.updateCourseState}
                 course={this.state.course} 
                 errors={this.state.errors}
             />
@@ -27,7 +37,8 @@ class ManageCoursePage extends React.Component {
 
 ManageCoursePage.propTypes = {
     //myProp: PropTypes.string.isRequired
-    course: PropTypes.object.isRequired
+    course: PropTypes.object.isRequired,
+    authors: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
