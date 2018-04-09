@@ -10,6 +10,8 @@ import { loadAuthors} from './actions/authorActions';
 
 import './styles/styles.css'; //webpack can import these too!
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/toastr/build/toastr.min.css';
+
 
 const store = configureStore(); //can put initialState in as a function param if you're passing state from server / localStorage etc.
 
