@@ -37,7 +37,7 @@ describe('Store', () => {
         const actualTwo = store.getState().courses[1];
         const expectedTwo = {
             title: "Dirty Code"
-        }
+        };
         expect(actualTwo).toEqual(expectedTwo);
 
 
