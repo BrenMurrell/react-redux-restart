@@ -42,7 +42,6 @@ describe('Course Reducer', () => {
         const untouchedCourse = newState.find(a => a.id == 'A');
         const otherUntouchedCourse = newState.find(a => a.id == 'C'); //redundant as already checking this in 'A'
         
-
         //assert
         expect(updatedCourse.title).toEqual('New Title');
         expect(untouchedCourse.title).toEqual('A');
