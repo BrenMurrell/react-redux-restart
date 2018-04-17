@@ -10,9 +10,17 @@ const Header = ({loading}) => {
             <Link to="/about" activeClassName="active">About</Link>
             {" | "}
             <Link to="/courses" activeClassName="active">Courses</Link>            
+            {" | "}
+            <Link to="/authors" activeClassName="active">Authors</Link>            
+            
             {loading && <LoadingDots interval={300} dots={3} />}
         </nav>
     );
+};
+
+
+Header.propTypes = {
+    loading: PropTypes.function
 };
 
 export default Header;
