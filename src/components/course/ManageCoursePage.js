@@ -13,11 +13,13 @@ export class ManageCoursePage extends React.Component {
         this.state = {
             course: Object.assign({}, this.props.course),
             errors: {},
+            deleting: false,
             saving: false //local state - doesn't need to go thru redux workflow
         };
 
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse = this.saveCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -52,16 +54,26 @@ export class ManageCoursePage extends React.Component {
         }
         this.setState({saving: true});
         this.props.actions.saveCourse(this.state.course)
-            .then(() => this.redirect())
+            .then(() => this.redirect('updated'))
             .catch(error => {
                 toastr.error(error);
                 this.setState({saving: false});                
             });
         
     }
-    redirect() {
+    deleteCourse(event) {
+        event.preventDefault();
+        this.setState({deleting: true});
+        this.props.actions.deleteCourse(this.state.course.id)
+            .then(() => this.redirect('deleted'))
+            .catch(error => {
+                this.redirect('deleted');
+                this.setState({deleting: false});
+            });
+    }
+    redirect(editType) {
         this.setState({saving: false});
-        toastr.success('Course saved');        
+        toastr.success('Course ' + editType);        
         this.context.router.push('/courses');
     }
     render() {
@@ -73,6 +85,8 @@ export class ManageCoursePage extends React.Component {
                 course={this.state.course} 
                 errors={this.state.errors}
                 saving={this.state.saving}
+                deleting={this.state.deleting}
+                onDelete={this.deleteCourse}
             />
         );
     }
@@ -80,7 +94,7 @@ export class ManageCoursePage extends React.Component {
 
 ManageCoursePage.propTypes = {
     //myProp: PropTypes.string.isRequired
-    course: PropTypes.object.isRequired,
+    course: PropTypes.object,
     authors: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
