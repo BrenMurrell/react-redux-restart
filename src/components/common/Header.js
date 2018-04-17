@@ -19,8 +19,5 @@ const Header = ({loading}) => {
 };
 
 
-Header.propTypes = {
-    loading: PropTypes.function
-};
 
 export default Header;

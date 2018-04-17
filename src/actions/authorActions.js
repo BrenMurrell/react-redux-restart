@@ -7,7 +7,6 @@ export function loadAuthorsSuccess(authors) {
     return { type: types.LOAD_AUTHORS_SUCCESS, authors };
 }
 
-// can add loadCoursesFailure (using catch below instead for brevity)
 
 export function loadAuthors() {
     //promise >> action
