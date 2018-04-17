@@ -25,7 +25,7 @@ class AuthorsPage extends React.Component {
                     type="submit"
                     value="Add author"
                     className="btn btn-primary"
-                    onClick={this.redirectToAddAuthorPage} />
+                    onClick={this.redirectToAddAuthorsPage} />
                 <AuthorList authors={authors} />
             </div>
         );
